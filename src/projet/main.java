@@ -1,5 +1,7 @@
 package projet;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class main {
@@ -31,15 +33,55 @@ public class main {
 
 		// lire les données entrées par l'utilisateur au clavier
 
-		String nom;
+//		String nom;
+//		String categorie;
+//		int heures;
+//		Groupe groupe = new Groupe();
+//		Scanner sc = new Scanner(System.in);
+//		int stoppeur = 1;
+//
+//		while (stoppeur == 1) {
+//
+//			System.out.print("Entrez le nom de la tâche : ");
+//			nom = sc.nextLine();
+//
+//			System.out.print("Entrez la catégorie de la tâche : ");
+//			categorie = sc.nextLine();
+//
+//			System.out.print("Entrez le nombre d'heures nécessaires pour terminer la tâche : ");
+//			heures = sc.nextInt();
+//			sc.nextLine(); // Consommation de la ligne vide après l'entier
+//
+//			System.out.print("Entrez les personnes impliquées dans la tâche (séparées par des espaces) : ");
+//			String personnesString = sc.nextLine();
+//			String[] personnes = personnesString.split(" ");
+//
+//			Tache tache = new Tache(nom, categorie, heures, personnes);
+//			groupe.ajouterTache(tache);
+//			System.out.println("Emploi du temps du groupe :");
+//			groupe.afficherTaches();
+//
+//			System.out.print("Entrez 1 pour continuer à ajouter des taches 0 sinon ");
+//			stoppeur = sc.nextInt();
+//			sc.nextLine();
+//
+//		}
+//		sc.close();
+//		
+
+		String dateDebutString;
+		String personnesString;
+		String[] personnes;
 		String categorie;
+		String nom;
 		int heures;
+		LocalDateTime dateFin;
+		LocalDateTime dateDebut;
+		DateTimeFormatter formatter;
 		Groupe groupe = new Groupe();
 		Scanner sc = new Scanner(System.in);
 		int stoppeur = 1;
-
 		while (stoppeur == 1) {
-
 			System.out.print("Entrez le nom de la tâche : ");
 			nom = sc.nextLine();
 
@@ -51,20 +93,30 @@ public class main {
 			sc.nextLine(); // Consommation de la ligne vide après l'entier
 
 			System.out.print("Entrez les personnes impliquées dans la tâche (séparées par des espaces) : ");
-			String personnesString = sc.nextLine();
-			String[] personnes = personnesString.split(" ");
+			personnesString = sc.nextLine();
+			personnes = personnesString.split(" ");
 
-			Tache tache = new Tache(nom, categorie, heures, personnes);
-			groupe.ajouterTache(tache);
-			System.out.println("Emploi du temps du groupe :");
-			groupe.afficherTaches();
+			System.out.print("Entrez la date de début de la tâche (jj/mm/aaaa hh:mm) : ");
+			dateDebutString = sc.nextLine();
+			dateDebut = LocalDateTime.parse(dateDebutString, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
 
-			System.out.print("Entrez 1 pour continuer à ajouter des taches 0 sinon ");
+			System.out.print("Entrez la date de fin de la tâche (jj/mm/aaaa hh:mm) : ");
+			String dateFinString = sc.nextLine();
+			dateFin = LocalDateTime.parse(dateFinString, DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm"));
+
+			Tache tache = new Tache(nom, categorie, heures, personnes, dateDebut, dateFin);
+			if (groupe.chevauchementTache(tache)) {
+				System.out.println(
+						"La tâche chevauche une autre tâche existante, veuillez en choisir une autre plage horaire.");
+			} else {
+				groupe.ajouterTache(tache);
+				System.out.println("Emploi du temps du groupe :");
+				groupe.afficherTaches();
+			}
+			System.out.print("Entrez 1 pour continuer à ajouter des taches 0 sinon : ");
 			stoppeur = sc.nextInt();
-			sc.nextLine();
-
+			sc.nextLine(); // Consommation de la ligne vide après l'entier
 		}
 		sc.close();
 	}
-
 }
