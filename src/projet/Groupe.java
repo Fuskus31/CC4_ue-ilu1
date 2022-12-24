@@ -43,4 +43,21 @@ class Groupe {
 			System.out.println();
 		}
 	}
+
+	public Tache[] getTaches() {
+		return taches;
+	}
+
+	public void setTaches(Tache[] taches) {
+		this.taches = taches;
+	}
+
+	public int getNbTaches() {
+		return nbTaches;
+	}
+
+	public void setNbTaches(int nbTaches) {
+		this.nbTaches = nbTaches;
+	}
+
 }

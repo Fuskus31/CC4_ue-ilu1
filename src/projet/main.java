@@ -112,11 +112,15 @@ public class main {
 				groupe.ajouterTache(tache);
 				System.out.println("Emploi du temps du groupe :");
 				groupe.afficherTaches();
+				Csv.ecrireTaches(tache, "taches.csv");
 			}
 			System.out.print("Entrez 1 pour continuer à ajouter des taches 0 sinon : ");
 			stoppeur = sc.nextInt();
 			sc.nextLine(); // Consommation de la ligne vide après l'entier
+
 		}
+		// Ajoutez des tâches au groupe...
+
 		sc.close();
 	}
 }
