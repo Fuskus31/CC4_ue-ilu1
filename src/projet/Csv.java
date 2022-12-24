@@ -5,14 +5,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class Csv {
-	public static void ecrireTaches(Tache tache, String nomFichier) {
+
+	public static void ecrireTaches(Tache[] taches, String nomFichier, int nbtache) {
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(nomFichier));
-
-			writer.write(tache.getNom() + "," + tache.getCategorie() + "," + tache.getHeures() + ","
-					+ tache.getPersonnes() + "," + tache.getDateDebut() + "," + tache.getDateFin());
-			writer.newLine();
-
+			for (int i = 0; i < nbtache; i++) {
+				Tache tache = taches[i];
+				writer.write(tache.getNom() + "," + tache.getCategorie() + "," + tache.getHeures() + ","
+						+ tache.getPersonnes() + "," + tache.getDateDebut() + "," + tache.getDateFin());
+				writer.newLine();
+			}
 			writer.close();
 		} catch (IOException e) {
 			e.printStackTrace();

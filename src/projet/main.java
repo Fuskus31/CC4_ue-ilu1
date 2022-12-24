@@ -68,7 +68,7 @@ public class main {
 //		}
 //		sc.close();
 //		
-
+		Tache[] tachesMain = new Tache[100];
 		String dateDebutString;
 		String personnesString;
 		String[] personnes;
@@ -112,7 +112,8 @@ public class main {
 				groupe.ajouterTache(tache);
 				System.out.println("Emploi du temps du groupe :");
 				groupe.afficherTaches();
-				Csv.ecrireTaches(tache, "taches.csv");
+				Csv.ecrireTaches(groupe.getTaches(), "taches.csv", groupe.getNbTaches());
+
 			}
 			System.out.print("Entrez 1 pour continuer à ajouter des taches 0 sinon : ");
 			stoppeur = sc.nextInt();

@@ -5,6 +5,7 @@ import java.time.format.DateTimeFormatter;
 class Groupe {
 	private Tache[] taches;
 	private int nbTaches;
+	private int iterationCsv = -1;
 
 	public Groupe() {
 		taches = new Tache[100];
@@ -42,6 +43,11 @@ class Groupe {
 					"Date de fin : " + taches[i].getDateFin().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm")));
 			System.out.println();
 		}
+	}
+
+	public Tache getLastTaches() {
+		iterationCsv++;
+		return taches[iterationCsv];
 	}
 
 	public Tache[] getTaches() {
