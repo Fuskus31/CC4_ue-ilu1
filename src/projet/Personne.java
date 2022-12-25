@@ -11,4 +11,8 @@ class Personne extends Agenda {
 	public void afficherNom() {
 		System.out.println(nom);
 	}
+
+	public String getNom() {
+		return nom;
+	}
 }

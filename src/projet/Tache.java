@@ -36,6 +36,10 @@ class Tache {
 		return personnes;
 	}
 
+	public String getTablePersonnes(String[] personne) {
+		return personne[0];
+	}
+
 	public LocalDateTime getDateDebut() {
 		return dateDebut;
 	}
@@ -43,4 +47,5 @@ class Tache {
 	public LocalDateTime getDateFin() {
 		return dateFin;
 	}
+
 }

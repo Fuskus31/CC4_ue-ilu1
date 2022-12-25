@@ -11,8 +11,20 @@ public class Csv {
 			BufferedWriter writer = new BufferedWriter(new FileWriter(nomFichier));
 			for (int i = 0; i < nbtache; i++) {
 				Tache tache = taches[i];
-				writer.write(tache.getNom() + "," + tache.getCategorie() + "," + tache.getHeures() + ","
-						+ tache.getPersonnes() + "," + tache.getDateDebut() + "," + tache.getDateFin());
+				String[] tabPersonne = tache.getPersonnes();
+				// Concaténation des éléments du tableau en une chaîne de caractères séparéespar
+				// une virgule
+
+				// String personnes = String.join(",", tabPersonne);
+
+				// Concaténation des noms des personnes
+				String personnes = "";
+				for (int j = 0; j < tabPersonne.length; j++) {
+					personnes += tabPersonne[j] + ' ';
+				}
+
+				writer.write(tache.getNom() + "," + tache.getCategorie() + "," + tache.getHeures() + "," + personnes
+						+ "," + tache.getDateDebut() + "," + tache.getDateFin());
 				writer.newLine();
 			}
 			writer.close();
@@ -20,4 +32,5 @@ public class Csv {
 			e.printStackTrace();
 		}
 	}
+
 }
