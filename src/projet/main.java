@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
-public class main {
+public class Main {
 
 	public static void main(String[] args) {
 		// Création du groupe
@@ -68,7 +68,7 @@ public class main {
 //		}
 //		sc.close();
 //		
-		Tache[] tachesMain = new Tache[100];
+		//Tache[] tachesMain = new Tache[100];
 		String dateDebutString;
 		String personnesString;
 		String[] personnes;
@@ -77,7 +77,7 @@ public class main {
 		int heures;
 		LocalDateTime dateFin;
 		LocalDateTime dateDebut;
-		DateTimeFormatter formatter;
+		//DateTimeFormatter formatter;
 		Groupe groupe = new Groupe();
 		Scanner sc = new Scanner(System.in);
 		int stoppeur = 1;
