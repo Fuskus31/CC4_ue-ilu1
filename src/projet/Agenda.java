@@ -26,4 +26,20 @@ class Agenda {
 		}
 	}
 
+	public Tache getTaches() {
+		return taches[0];
+	}
+
+	public void setTaches(Tache[] taches) {
+		this.taches = taches;
+	}
+
+	public int getNbTaches() {
+		return nbTaches;
+	}
+
+	public void setNbTaches(int nbTaches) {
+		this.nbTaches = nbTaches;
+	}
+
 }

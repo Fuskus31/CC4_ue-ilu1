@@ -1,3 +1,47 @@
-open Str;;
+open String;;
 
-print_string "hello"
+(* Fonction de lecture d'un fichier CSV *)
+let read_csv_file filename =
+  (* Ouverture du fichier en lecture *)
+  let file = open_in filename in
+  (* Liste qui va contenir les lignes du fichier *)
+  let lines = ref [] in
+  (* Lecture de chaque ligne *)
+  try
+    while true do
+      (* Lecture de la ligne suivante *)
+      let line = input_line file in
+      (* Séparation des champs à l'aide de la fonction split_on_char *)
+      let fields = split_on_char ',' line in
+      (* Ajout de la ligne sous forme de liste de chaînes à la liste lines *)
+      lines := fields :: !lines
+    done;
+    (* Fermeture du fichier en fin de traitement *)
+    close_in file;
+    (* Renvoi de la liste des lignes *)
+    !lines
+  with
+  (* Fin de fichier atteinte, fermeture du fichier et renvoi de la liste des lignes *)
+  | End_of_file -> close_in file; !lines
+
+(* Fonction de séparation d'une chaîne en une liste de chaînes en utilisant un caractère de séparation donné *)
+
+(* Fonction de séparation d'une chaîne en une liste de chaînes en utilisant un caractère de séparation donné *)
+let rec split_on_char sep s =
+  (* Si la chaîne est vide, on renvoie une liste vide *)
+  if s = "" then []
+  (* Sinon, on cherche l'index du premier caractère de séparation *)
+  else begin
+    try
+      (* Index du prochain caractère de séparation *)
+      let i = String.index s sep in
+      (* On ajoute la chaîne précédant le séparateur à la liste, en utilisant la récursion *)
+      (String.sub s 0 i) :: (split_on_char sep (String.sub s (i+1) (String.length s - i - 1)))
+    (* Si aucun séparateur n'est trouvé, on renvoie la chaîne elle-même dans une liste *)
+    with Not_found -> [s]
+  end
+
+(* Lecture du fichier CSV "taches.csv" et stockage de son contenu dans la variable data *)
+let data = read_csv_file "taches.csv";;
+(* Parcours de toutes les lignes de data et affichage de chaque champ séparé par un espace *)
+List.iter (fun line -> print_string (String.concat " " line); print_newline ()) data
