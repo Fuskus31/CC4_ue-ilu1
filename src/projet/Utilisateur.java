@@ -7,6 +7,18 @@ import java.util.Scanner;
 
 public class Utilisateur {
 	public static void main(String[] args) {
+
+		// creation d'une tache pour un employer ( personnel )
+		Humain homme = new Humain("MichelTolosa");
+		homme.parler();
+
+		Employer kevin = new Employer("kevin");
+		kevin.parler();
+		Tache tacheExemple = new Tache("Nettoyer la maison", "Travail", 4, new String[] { "kevin" },
+				LocalDateTime.of(2022, 6, 15, 8, 0), LocalDateTime.of(2022, 6, 15, 12, 0));
+		kevin.setAgenda(tacheExemple);
+		kevin.afficherTache();
+
 		String dateDebutString;
 		String personnesString;
 		String[] personnes;

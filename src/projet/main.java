@@ -1,7 +1,7 @@
 package projet;
 
 //public class Main {
-//
+// ancien main pour vérifier les fonctions
 //	public static void main(String[] args) {
 //	}
 // creation d'une tache pour un employer ( personnel )
