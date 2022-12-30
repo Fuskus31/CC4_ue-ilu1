@@ -28,16 +28,16 @@ let read_csv_file filename =
 
 (* Fonction de séparation d'une chaîne en une liste de chaînes en utilisant un caractère de séparation donné *)
 let rec split_on_char sep s =
-  (* Si la chaîne est vide, on renvoie une liste vide *)
+ 
   if s = "" then []
-  (*cherche l'index du premier caractère de séparation *)
+  
   else begin
     try
       (* Index du prochain caractère de séparation *)
       let i = String.index s sep in
       
       (String.sub s 0 i) :: (split_on_char sep (String.sub s (i+1) (String.length s - i - 1)))
-    (*  on renvoie la chaîne elle-même dans une liste *)
+   
     with Not_found -> [s]
   end
 
